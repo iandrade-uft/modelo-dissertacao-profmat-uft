@@ -1,0 +1,220 @@
+% ---
+% Pacotes Principais
+% ---
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}    % layout de página
+\usepackage{lmodern}		% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}	% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}	% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}			% Controle das cores
+\usepackage{graphicx}		% Inclusão de gráficos
+\usepackage{microtype} 		% para melhorias de justificação
+\usepackage{pslatex}        % torna o documento padrão para as fontes Times/Helvetica/Courier
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{setspace}
+\usepackage{chngcntr}
+\usepackage{keystroke}
+\usepackage{tocloft}
+\usepackage{longtable, ltcaption}
+\usepackage{newfloat}
+% ---
+% ---
+% Pacote de citações
+% ---
+\usepackage[alf,abnt-etal-text=it,abnt-repeated-author-omit=yes,abnt-etal-list=0,abnt-etal-cite=4,abnt-emphasize=bf]{abntex2cite}
+% ---
+
+
+% ---
+% Customizações de Fontes e Tamanhos de Letras usados na Classe ABNTEX2
+% ---
+\renewcommand{\chaptitlefont}{\ABNTEXchapterfont\ABNTEXchapterfontsize}
+
+\setsecheadstyle{\ABNTEXsectionfont\ABNTEXsectionfontsize\ABNTEXsectionupperifneeded}
+
+\renewcommand{\ABNTEXchapterfont}{\rmfamily}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize\bfseries}
+
+\renewcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
+\renewcommand{\ABNTEXpartfontsize}{\LARGE\bfseries}
+\renewcommand{\cftpartfont}{\normalfont\rmfamily\bfseries}
+\renewcommand{\cftpartpagefont}{\normalfont\rmfamily\bfseries}
+
+\renewcommand{\ABNTEXsectionfont}{\ABNTEXchapterfont}
+\renewcommand{\ABNTEXsectionfontsize}{\bfseries}
+
+\renewcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXsubsubsectionfont}{\ABNTEXsubsectionfont}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\ABNTEXsubsectionfont}
+\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
+% ---
+
+% ---
+% Customização do Sumário (Distância entre número e nome do item)
+% ---
+\setlength{\cftlastnumwidth}{3.5em}
+\cftsetindents{part}{0em}{\cftlastnumwidth}
+\cftsetindents{chapter}{0em}{\cftlastnumwidth}
+\cftsetindents{section}{0em}{\cftlastnumwidth}
+\cftsetindents{subsection}{0em}{\cftlastnumwidth}
+\cftsetindents{subsubsection}{0em}{\cftlastnumwidth}
+\cftsetindents{paragraph}{0em}{\cftlastnumwidth}
+\cftsetindents{subparagraph}{0em}{\cftlastnumwidth}
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\renewcommand{\insertchapterspace}{}
+\newcommand{\listofquadrosname}{}
+\DeclareFloatingEnvironment[
+    fileext=loq,
+    listname={Lista de Quadros},
+    name=Quadro,
+    placement=p,
+    within=none,
+    chapterlistsgaps=off,
+    ]{quadro}
+
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+\setlength{\cftbeforechapterskip}{0pt} % Altera o espaçamento entre itens do sumário
+% ---
+
+% ---
+% Customizações Adicionais
+% ---
+\providecommand{\imprimircampus}{}
+\newcommand{\campus}[1]{\renewcommand{\imprimircampus}{#1}}
+
+\providecommand{\imprimirsubtitulo}{}
+\newcommand{\subtitulo}[1]{\renewcommand{\imprimirsubtitulo}{#1}}
+
+\providecommand{\imprimirexaminadorA}{}
+\newcommand{\examinadorA}[1]{\renewcommand{\imprimirexaminadorA}{#1}}
+
+\providecommand{\imprimirexaminadorB}{}
+\newcommand{\examinadorB}[1]{\renewcommand{\imprimirexaminadorB}{#1}}
+
+\counterwithout{equation}{chapter} % define uma numeração contínua (1,2,3, ...) de equações. Para uma numeração com dependência do número do capítulo (1.1, 1.2, ...), basta apagar esta linha.
+
+\setlength{\ABNTEXsignwidth}{10cm} % define o comprimento da linha de assinatura na folha de aprovação
+
+\setlength{\ABNTEXsignthickness}{0.5pt} % define a espessura da linha de assinatura na folha de aprovação
+
+% Redefine o ambiente citacao para que as citações diretas com mais de 3 linhas tenham recuo de 4 cm
+\renewenvironment{citacao}[1][default]{%
+   \list{}{\leftmargin=0cm}%
+   \ABNTEXfontereduzida%
+   \addtolength{\leftskip}{\ABNTEXcitacaorecuo}%
+   \item[]%
+   \begin{SingleSpace}%
+   \ifthenelse{\not\equal{#1}{default}}{\itshape\selectlanguage{#1}}{}%
+ }{%
+   \end{SingleSpace}%
+   \endlist}%
+
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+%\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\cftparskip}{0pt}
+
+%\renewcommand{\baselinestretch}{1.5}
+\linespread{1.5}
+
+% Altera o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+% ---
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      		% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% Modelo de Capa conforme Manual UFT
+\renewcommand{\imprimircapa}{
+\begin{capa}
+    \begin{center}
+    	\includegraphics[scale=0.12]{img/brasao.png}\\
+ 		\MakeUppercase{\textbf{\imprimirinstituicao}}\\
+ 		\MakeUppercase{\textbf{CÂMPUS UNIVERSITÁRIO DE \imprimircampus}}\\
+ 		\textbf{PROGRAMA DE MESTRADO PROFISSIONAL EM MATEMÁTICA\\ EM REDE NACIONAL -- PROFMAT}\\
+ 		\vspace{2.5cm}
+		\MakeUppercase{\textbf{\imprimirautor}}\\
+        \vspace{3.5cm}
+        \MakeUppercase{\textbf{\imprimirtitulo}}\\
+        \MakeUppercase{\imprimirsubtitulo}
+        \vfill
+        \MakeUppercase{\imprimircampus} (TO)\\
+        \imprimirdata
+    \end{center}
+\end{capa}
+}
+% ---
+
+% ---
+% Modelo de Folha de Rosto conforme Manual UFT
+\renewcommand{\imprimirfolhaderosto}{
+\begin{folhaderosto}
+    \begin{center}
+     	\MakeUppercase{\textbf{\imprimirautor}}\\
+     	\vspace{5cm}
+     	\MakeUppercase{\textbf{\imprimirtitulo}} \\
+     	\MakeUppercase{\imprimirsubtitulo}
+     \end{center}
+     \vspace{3.5cm}
+     \hspace{8cm}
+        \begin{minipage}{8cm}
+			\SingleSpacing
+			\imprimirpreambulo
+		\end{minipage}\\
+	\begin{center}
+        \vfill
+        \MakeUppercase{\imprimircampus} (TO) \\
+        \imprimirdata
+    \end{center}
+\end{folhaderosto}
+}
+% ---
