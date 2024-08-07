@@ -8,52 +8,182 @@
 %-----------------------------Apêndices-----------------------------%
 \begin{apendicesenv}
 
-\chapter{Exemplo de apêndice digitado}
+\chapter{Tutorial Básico de \LaTeX}
 
-O apêndice é escrito como um texto normal da dissertação.
+\section*{Introdução}
+\LaTeX{} é um sistema de preparação de documentos de alta qualidade tipográfica, amplamente utilizado em publicações científicas e acadêmicas. Este tutorial oferece uma introdução detalhada ao \LaTeX, cobrindo os conceitos e comandos fundamentais para a criação de documentos profissionais.
 
-\section*{Regras básicas}
-
-Para que as seções e subsecções  do apêndice não apareçam do sumário, deve-se especificá-las com os comandos:
-\begin{verbatim}
-\section*{nome-da-seção}
-\end{verbatim}
+\section*{Estrutura Básica de um Documento}
+Um documento \LaTeX{} típico possui a seguinte estrutura básica:
 
 \begin{verbatim}
-\subsection*{nome-da-subseção}
+\documentclass{classe}
+\usepackage{pacotes}
+
+\begin{document}
+    % Conteúdo do documento
+\end{document}
 \end{verbatim}
 
-O asterisco (\verb!*!) indica ao LaTeX que a seção ou subseção não deve ser adicionada ao sumário.
+\begin{itemize}
+    \item \texttt{\textbackslash documentclass\{classe\}}: Define a classe do documento (e.g., \texttt{article}, \texttt{report}, \texttt{book}).
+    \item \texttt{\textbackslash usepackage\{pacotes\}}: Inclui pacotes adicionais para funcionalidades extras.
+    \item \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash end\{document\}}: Delimitam o início e o fim do conteúdo do documento.
+\end{itemize}
 
-\subsubsection*{O que é possível}
+\section*{Texto e Formatação}
+Você pode escrever texto normalmente e utilizar comandos para formatação. Alguns exemplos:
 
-É possível inserir equações e expressões matemáticas. Por exemplo,
-$$\textbf{A} = \left(a_{ij}\right)_{m \times n}$$ 
-e  
-$$\textbf{B} = \left(b_{ij}\right)_{m \times n}$$ 
-são matrizes de mesma ordem...
+\subsection*{Negrito e Itálico}
+\begin{itemize}
+    \item \texttt{\textbackslash textbf\{texto\}}: \textbf{texto em negrito}
+    \item \texttt{\textbackslash textit\{texto\}}: \textit{texto em itálico}
+\end{itemize}
 
-		\begin{eqnarray*}
-		\left\lbrace
-		\begin{aligned}
-		&a_{11}x_1+a_{12}x_2 + \ldots + a_{1n}x_n = b_1\\
-		&a_{21}x_1+a_{22}x_2 + \ldots + a_{2n}x_n = b_2\\
-		&\quad \vdots \quad \qquad \qquad \ddots  \quad \qquad \qquad \vdots\\
-		&a_{m1}x_1+a_{m2}x_2 + \ldots + a_{mn}x_n = b_m
-		\end{aligned}
-		\right.
-		\end{eqnarray*}
-		é um sistema de equações lineares ...
-		
-	Figuras também são possíveis:
-		
-	\begin{figure}[H]
-	\centering
-	\caption{Janela de ajuda do editor TexMaker}
-	\includegraphics[scale=0.5]
-	{img/fig16.png}\label{fig16}\\
-	FONTE: Autor (2015)
-	\end{figure}
+\subsection*{Listas}
+\LaTeX{} permite criar listas numeradas e não numeradas:
+
+\subsubsection*{Lista Não Numerada}
+\begin{verbatim}
+\begin{itemize}
+    \item Item 1
+    \item Item 2
+\end{itemize}
+\end{verbatim}
+
+\begin{itemize}
+    \item Item 1
+    \item Item 2
+\end{itemize}
+
+\subsubsection*{Lista Numerada}
+\begin{verbatim}
+\begin{enumerate}
+    \item Primeiro item
+    \item Segundo item
+\end{enumerate}
+\end{verbatim}
+
+\begin{enumerate}
+    \item Primeiro item
+    \item Segundo item
+\end{enumerate}
+
+\section*{Equações Matemáticas}
+Uma das grandes vantagens do \LaTeX{} é a facilidade para escrever equações matemáticas.
+
+\subsection*{Equação em Linha}
+Use o símbolo \texttt{\$} para delimitar equações em linha. Por exemplo, para obter o seguinte resultado \( E = mc^2 \), escreva \verb|$ E = mc^2 $|.
+
+\subsection*{Equação em Bloco}
+Para equações em bloco, use o ambiente \texttt{equation}:
+
+\begin{verbatim}
+\begin{equation}
+    E = mc^2
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    E = mc^2
+\end{equation}
+
+\subsection*{Equações Multilinhas}
+Para equações que se estendem por várias linhas, use o ambiente \texttt{align} do pacote \texttt{amsmath}:
+
+\begin{verbatim}
+\begin{align}
+    a &= b + c \\
+    d &= e + f
+\end{align}
+\end{verbatim}
+
+\begin{align}
+    a &= b + c \\
+    d &= e + f
+\end{align}
+
+\section*{Inserção de Imagens}
+Você pode inserir imagens com o pacote \texttt{graphicx}:
+
+\begin{verbatim}
+\begin{figure}[H]
+    \centering
+    \caption{Legenda da imagem}
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \\
+    \caption*{\small{Fonte: Autor (20XX)}}
+    \label{fig:exemplo}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[H]
+    \centering
+    \caption{Legenda da imagem}
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \\
+    \caption*{\small{Fonte: Autor (20XX)}}
+    \label{fig:exemplo}
+\end{figure}
+
+\section*{Inserção de Tabelas}
+
+A tabela é uma forma  de apresentação de informações, na qual o dado numérico é o principal elemento de destaque. Caracteriza-se por apresentar dados dispostos em linhas e colunas, organizados em uma estrutura que facilita a visualização e a comparação das informações \cite{ManualIBGE}. 
+
+O código abaixo exemplifica como incluir uma tabela em \LaTeX. O resultado é mostrado logo em seguida:
+
+\begin{verbatim}
+\begin{table}[H]
+    \centering
+    \caption{Exemplo de Tabela de Dados Numéricos}
+    \begin{tabular}{c c c}
+        \hline
+        \textbf{Ano} & \textbf{Valor 1} & \textbf{Valor 2} \\
+        \hline
+        2020 & 1234 & 5678 \\
+        2021 & 2345 & 6789 \\
+        2022 & 3456 & 7890 \\
+        2023 & 4567 & 8901 \\
+        \hline
+    \end{tabular}
+    \\
+    \caption*{\small{Fonte: Autor (20XX)}}
+    \label{tab:exemplo}
+\end{table}
+\end{verbatim}
+
+\begin{table}[H]
+    \centering
+    \caption{Exemplo de Tabela de Dados Numéricos}
+    \begin{tabular}{c c c}
+        \hline
+        \textbf{Ano} & \textbf{Valor 1} & \textbf{Valor 2} \\
+        \hline
+        2020 & 1234 & 5678 \\
+        2021 & 2345 & 6789 \\
+        2022 & 3456 & 7890 \\
+        2023 & 4567 & 8901 \\
+        \hline
+    \end{tabular}
+    \\
+    \caption*{\small{Fonte: Autor (20XX)}}
+    \label{tab:exemplo}
+\end{table}
+
+\section*{Referências Cruzadas}
+
+Você pode criar referências cruzadas para seções, figuras, tabelas, equações, etc. usando \texttt{\textbackslash label} e \texttt{\textbackslash ref}. No exemplo de inserção de figuras acima, esta foi utilizado o comando \verb|\label{fig:exemplo}|, em que \verb|fig:exemplo| é um ``identificador'' (que deve ser único) da imagem. Assim, para referenciá-la, escreva: \verb|Conforme Figura \ref{fig:exemplo}| para obter o resultado: ``Conforme Figura \ref{fig:exemplo}''.
+
+
+\chapter{Tutorial de uso do modelo de dissertação Profmat/UFT}
+
+O presente modelo de Dissertação possui a seguinte estrutura básica de arquivos:
+
+
+
+
+
+
 
 \chapter{Exemplo de apêndice em pdf}
 \includepdf[pages=-]{pdf_apendices/apendice_exemplo.pdf}
@@ -64,17 +194,6 @@ são matrizes de mesma ordem...
 
 %-----------------------------Anexos-----------------------------%
 % Imprime uma página indicando o início dos anexos
-
-
-% ---
-\chapter{Exemplo de um anexo digitado}
-% ---
-\section*{Configuring Texmaker}
-Before using Texmaker, you must configure the editor and latex related commands via the ``Configure Texmaker'' command in the ``Options'' menu (``Preferences'' under macosx).
-\subsection*{Configuring the editor}
-
-Before compiling your first document, you must set the encoding used by the editor (``Configure Texmaker'' -> ``Editor'' -> ``Editor Font Encoding''). 
-
 
 % ---
 \chapter{Exemplo de anexo em pdf}
